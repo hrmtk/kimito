@@ -22,8 +22,6 @@ const Feed = () => {
           setPins(data);
           setLoading(false);
         });
-
-
     } else {
       client.fetch(feedQuery)
         .then((data) => {
@@ -33,7 +31,7 @@ const Feed = () => {
     }
   }, [categoryId])
 
-  if(loading) return <Spinner message="We are adding new ideas to your feed!" />
+  if(loading) return <Spinner />
 
   return (
     <div>

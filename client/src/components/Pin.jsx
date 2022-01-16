@@ -7,6 +7,7 @@ import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
 
 import { client, urlFor } from '../client';
 import { fetchUser } from '../utils/fetchUser';
+import { pinDetailMorePinQuery } from '../utils/data';
 
 const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
   const [postHovered, setPostHovered] = useState(false);
@@ -14,7 +15,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
   const navigate = useNavigate();
 
   const user = fetchUser();
-  const alreadySaved = !!(save?.filter((item) => item.postedBy._id === user.googleId))?.length;
+  const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user?.googleId))?.length;
 
   const savePin = (id) => {
     if(!alreadySaved) {
@@ -24,10 +25,10 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         .setIfMissing({ save: [] })
         .insert('after', 'save[-1]',[{
           _key: uuidv4(),
-          userId: user.googleId,
+          userId: user?.googleId,
           postedBy: {
             _type: 'postedBy',
-            _ref: user.googleId
+            _ref: user?.googleId
           }
         }])
         .commit()
@@ -94,10 +95,10 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                   className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md" 
                 >
                   <BsFillArrowUpRightCircleFill />
-                  {destination.length > 20 ? destination.slice(8, 20) : destination.slice(8)}
+                  {destination.length > 15 ? `${destination.slice(0, 15)}...`: destination}
                 </a>
               )}
-              {postedBy?._id === user.googleId && (
+              {postedBy?._id === user?.googleId && (
                 <button
                   type="button"
                   onClick={(e) => {
@@ -114,8 +115,8 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
           </div>
         )}
       </div>
-      <Link to={`user-profile/${postedBy?._id}`} className='flex gap-2 mt-2 items-center'>
-        <img 
+      <Link to={`/user-profile/${postedBy?._id}`} className="flex gap-2 mt-2 items-center">
+        <img
           className="w-8 h-8 rounded-full object-cover"
           src={postedBy?.image}
           alt="user-profile"

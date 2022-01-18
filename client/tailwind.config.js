@@ -79,6 +79,9 @@ module.exports = {
       transitionProperty: {
         height: 'height',
       },
+      fontFamily: {
+        'rubik': ["'Rubik Beastly'", 'cursive']
+      }
     },
     cursor: {
       'zoom-in': 'zoom-in',

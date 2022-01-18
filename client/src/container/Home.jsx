@@ -29,7 +29,7 @@ const Home = () => {
     scrollRef.current.scrollTo(0, 0)
   }, [])
   return (
-    <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
+    <div className="flex md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
         <Sidebar user={user && user}/>
       </div>
@@ -37,10 +37,10 @@ const Home = () => {
         <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
           <HiMenu fontSize={40} className="cursor-pointer" onClick={() => setToggleSidebar(true)}/>
           <Link to="/">
-            <p className="w-28">logo</p>
+            <p className="bg-gray-500 text-white motion-safe:animate-pulse text-center text-3xl font-rubik px-3 rounded-xl">kimito</p>
           </Link>
           <Link to={`user-profile/${user?._id}`}>
-            <img src={user?.image} alt="logo" className="w-28" />
+            <img src={user?.image} alt="logo" className="w-8" />
           </Link>
         </div>
         {toggleSidebar && (
@@ -52,6 +52,7 @@ const Home = () => {
           </div>
         )}
       </div>
+
       <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
         <Routes>
           <Route path="/user-profile/:userId" element={<UserProfile />}/>

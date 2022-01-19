@@ -9,7 +9,3 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
-.rubik {
-  font-family: 'Rubik Beastly', cursive;
-}

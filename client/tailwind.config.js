@@ -80,7 +80,7 @@ module.exports = {
         height: 'height',
       },
       fontFamily: {
-        'rubik': ["'Rubik Beastly'", 'cursive']
+        'lobster': ["'Lobster'", 'cursive']
       }
     },
     cursor: {

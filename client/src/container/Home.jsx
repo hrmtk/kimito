@@ -37,10 +37,10 @@ const Home = () => {
         <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
           <HiMenu fontSize={40} className="cursor-pointer" onClick={() => setToggleSidebar(true)}/>
           <Link to="/">
-            <p className="bg-gray-500 text-white motion-safe:animate-pulse text-center text-3xl font-rubik px-3 rounded-xl">kimito</p>
+            <p className="text-blue-600 text-center text-3xl font-lobster px-3 rounded-xl">kimito</p>
           </Link>
           <Link to={`user-profile/${user?._id}`}>
-            <img src={user?.image} alt="logo" className="w-8" />
+            <img src={user?.image} alt="logo" className="w-8 rounded-full" />
           </Link>
         </div>
         {toggleSidebar && (

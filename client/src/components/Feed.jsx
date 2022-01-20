@@ -31,9 +31,9 @@ const Feed = () => {
     }
   }, [categoryId])
 
-  if(loading) return <Spinner />
+  if(loading) return <div className="mt-10"><Spinner /></div>
 
-  if(!pins?.length) return <h2>No pins available</h2>
+  if(!pins?.length) return <h2 className="mt-10 text-center text-xl">No pins available</h2>
 
   return (
     <div>

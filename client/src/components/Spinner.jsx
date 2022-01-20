@@ -1,5 +1,5 @@
 import React from 'react';
-import {BallTriangle} from 'react-loader-spinner';
+import { BallTriangle } from 'react-loader-spinner';
 
 const Spinner = () => {
   return (

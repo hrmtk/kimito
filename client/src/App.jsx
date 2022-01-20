@@ -1,21 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import {Login} from './components'
+import { Login, DarkMode } from './components'
 import Home from './container/Home'
+import { fetchUser } from './utils/fetchUser'
+
 
 const App = () => {
+  const [darkTheme, setDarkTheme] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    const User = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+    const user = fetchUser();
 
-    if (!User) navigate('/login');
+    if(!user) navigate('/login');
   }, []);
+  
   return (
-    <Routes>
-      <Route path="login" element={<Login />} />
-      <Route path="/*" element={<Home />} />
-    </Routes>
+    <div className={darkTheme ?  "dark": ""}>
+      <DarkMode darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="/*" element={<Home />} />
+      </Routes>
+    </div>
   )
 }
 

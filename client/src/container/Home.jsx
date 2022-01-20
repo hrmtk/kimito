@@ -21,6 +21,7 @@ const Home = () => {
 
     client.fetch(query)
       .then((data) => {
+        // console.log(data[0])
         setUser(data[0]);
       })
   }, []);
@@ -29,26 +30,26 @@ const Home = () => {
     scrollRef.current.scrollTo(0, 0)
   }, [])
   return (
-    <div className="flex md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
+    <div className="bg-slate-100 dark:bg-slate-900 dark:text-slate-200 flex md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
-        <Sidebar user={user && user}/>
+        <Sidebar />
       </div>
-      <div className="flex md:hidden flex-row">
+      <div className="flex md:hidden flex-row dark:bg-slate-800">
         <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
           <HiMenu fontSize={40} className="cursor-pointer" onClick={() => setToggleSidebar(true)}/>
           <Link to="/">
-            <p className="text-blue-600 text-center text-3xl font-lobster px-3 rounded-xl">kimito</p>
+            <p className="text-blue-600 dark:text-blue-200 text-center text-3xl font-lobster px-3 rounded-xl">kimito</p>
           </Link>
           <Link to={`user-profile/${user?._id}`}>
             <img src={user?.image} alt="logo" className="w-8 rounded-full" />
           </Link>
         </div>
         {toggleSidebar && (
-          <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
+          <div className="fixed w-4/5 bg-white dark:bg-slate-800 h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
             <div className="absolute w-full flex justify-end items-center p-2">
               <AiFillCloseCircle fontSize={30} className="cursor-pointer" onClick={() => setToggleSidebar(false)}/>
             </div>
-            <Sidebar user={user && user} closeToggle={setToggleSidebar}/>
+            <Sidebar closeToggle={setToggleSidebar}/>
           </div>
         )}
       </div>

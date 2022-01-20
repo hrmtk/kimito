@@ -19,17 +19,15 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
           onFocus={() => navigate('/search')}
           className="p-2 bg-white outline-none focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-full py-2 pl-5 ring-1 ring-slate-200 shadow-sm"
         />
-        
       </div>
-      <div className="flex gap-2">
-        <Link to='create-pin' className="rounded-lg -ml-3 w-12 h-12 md:w-14 md:h-12 flex justify-center items-center">
+      <div className="flex gap-1">
+        <Link to='create-pin' className="rounded-lg -ml-3 w-11 h-11 md:w-10 md:h-10 flex justify-center items-center">
           <IoMdAdd fontSize={21} />
         </Link>
-        <Link to={`user-profile/${user?._id}`} className="hidden md:block">
-          <img src={user.image} alt="user" className="w-12 h-12 md:w-12 md:h-11 rounded-full" />
+        <Link to={`user-profile/${user?._id}`} className="hidden md:flex justify-center items-center">
+          <img src={user.image} alt="user" className="w-11 md:w-10 rounded-full" />
         </Link>
       </div>
-
     </div>
   )
 }

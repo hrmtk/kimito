@@ -8,28 +8,24 @@ import { client } from '../client';
 
 const Login = () => {
   const navigate = useNavigate();
-
   const responseGoogle = (response) => {
     localStorage.setItem('user', JSON.stringify(response.profileObj));
     const { name, googleId, imageUrl } = response.profileObj;
-
     const doc = {
       _id: googleId,
       _type: 'user',
       userName: name,
-      image: imageUrl
-    }
-
-    client.createIfNotExists(doc)
-      .then(() => {
-        navigate('/', { replace: true })
-      })
-  }
+      image: imageUrl,
+    };
+    client.createIfNotExists(doc).then(() => {
+      navigate('/', { replace: true });
+    });
+  };
 
   return (
-    <div className="flex justify-start items-center flex-col h-screen">
-      <div className="relative w-full h-full">
-        <video 
+    <div className="flex justify-start items-center flex-col h-screen z-30">
+      <div className=" relative w-full h-full">
+        <video
           src={video}
           type="video/mp4"
           loop
@@ -38,22 +34,23 @@ const Login = () => {
           autoPlay
           className="w-full h-full object-cover"
         />
-        <div className="absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay">
-          <div className="p-5">
+
+        <div className="absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0    bg-blackOverlay">
+          <div className="text-white p-5 text-3xl font-lobster">
             kimito
           </div>
 
-        <div className="shadow-2xl">
+          <div className="shadow-2xl">
             <GoogleLogin
               clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
               render={(renderProps) => (
                 <button
                   type="button"
-                  className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
+                  className="bg-white opacity-50 hover:opacity-100 flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
                 >
-                  <FcGoogle className="mr-4" /> Sign in with Google
+                  <FcGoogle className="mr-4" /> Sign in with google
                 </button>
               )}
               onSuccess={responseGoogle}
@@ -64,7 +61,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
